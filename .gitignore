@@ -15,5 +15,4 @@ lib/
 z_html_files/
 *.csv
 *.log
-*.md
 config.ini

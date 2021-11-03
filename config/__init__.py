@@ -4,13 +4,17 @@ import json
 import os
 import re
 
-config_file_path = os.path.join(os.path.dirname(__file__), 'config.ini')
-__config = configparser.ConfigParser()
-
-__config.read(config_file_path)
+try:
+    config_file_path = os.path.join(os.path.dirname(__file__), 'config.ini')
+    __config = configparser.ConfigParser()
+    __config.read(config_file_path, encoding='utf-8')
+    __config.items('redis')
+except configparser.NoSectionError:
+    config_file_path = os.path.join(os.path.dirname(__file__), 'default_config.ini')
+    __config = configparser.ConfigParser()
+    __config.read(config_file_path, encoding='utf-8')
 
 get = __config.get
-
 sections = __config.sections
 
 
